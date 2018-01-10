@@ -4,6 +4,8 @@
 >
 >This inspection can be cluster wide or you can use [label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) to inspect a subset of nodes, pods, or both.
 
+![](screenshot.png)
+
 ## Table of contents
   * [Installation](#installation)
      * [Source install](#source-install)
