@@ -26,8 +26,7 @@
 
 ### Source install
 #### Requirements
-* A working [Go](https://golang.org/) install (tested with 1.8 and 1.9)
-* [dep](https://github.com/golang/dep)
+* A working [Go](https://golang.org/) install (tested only with 1.9)
 * A make tool
 
 ```
