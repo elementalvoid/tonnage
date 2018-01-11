@@ -19,6 +19,7 @@ deploy:
   provider: releases
   api_key:
     secure: B5/u+5Cw8poatTcCAgVwsTmvCV7crY2bffiYbRD8IZABw5epg+6n27X1xkiZ8C6FGpm+Hisr35tGTx3y5lzzPk+vz8d23cW9sfQTgsZMpZHR09b3YKSURwMEqKd9sEwKuXDOo8UiLAoPNmwh8v1o0yvyRfO90gEcDAMihwfsnjo418NkfdUGT50aKixy+UBBAH2mr8rdGSTuYOzhUWbTJM/DS+hfInWtCSX4QAb7EMuCwnhveSb4jdEoF9j7IQbsJzOU72Lv4NkbpSzVAeOecHEWQ87nGw+0gsy7RGbD8B1Vkj9j62j9a5oWZKpTXaJEBajlCBA87p7Xkj8mK5fojKR+ZIq3TD3gLMgp76bCXkPN1Zv67TbeO6dft47/bC2s4a/Fxs8SDYtgyleNb8P40GaCvwxO2QksIAizqoyI3IB2EJEjyHeVlyjedPtfx9EBp9lFx6Sl1qBkFgloyvI8ThoK4jYCcCJmLKNzKGGuN2hEtdTsOSqlepV65DSZ5meOcvNJHz0uH5Lg7VwDLdh+eWVoNi0744FqTfR5pAXBwlLbyatfoU/fL5RpSMPQjayrkl0hGlzO7kRjUjBiDBe2Et2aKV3Xou47mqSJebWGwYt5WbVGU56WBhPskoShQDs/Af3sa+dPNl1Ok9ewlKgdt2G05BPmUt5GYh2+yqqUrfs=
+  skip_cleanup: true
   file:
     - "_dist/tonnage-$TRAVIS_TAG-darwin-amd64.tar.gz"
     - "_dist/tonnage-$TRAVIS_TAG-linux-386.tar.gz"
