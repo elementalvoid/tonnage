@@ -22,9 +22,13 @@ deploy:
   skip_cleanup: true
   file:
     - "_dist/tonnage-$TRAVIS_TAG-darwin-amd64.tar.gz"
+    - "_dist/tonnage-$TRAVIS_TAG-darwin-amd64.tar.gz.sha256"
     - "_dist/tonnage-$TRAVIS_TAG-linux-386.tar.gz"
+    - "_dist/tonnage-$TRAVIS_TAG-linux-386.tar.gz.sha256"
     - "_dist/tonnage-$TRAVIS_TAG-linux-amd64.tar.gz"
+    - "_dist/tonnage-$TRAVIS_TAG-linux-amd64.tar.gz.sha256"
     - "_dist/tonnage-$TRAVIS_TAG-windows-amd64.tar.gz"
+    - "_dist/tonnage-$TRAVIS_TAG-windows-amd64.tar.gz.sha256"
   on:
     repo: elementalvoid/tonnage
     all_branches: true
