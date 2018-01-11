@@ -1,4 +1,8 @@
 # tonnage
+[![Build Status](https://img.shields.io/travis/elementalvoid/tonnage.svg)](https://travis-ci.org/elementalvoid/tonnage)
+[![Go Report Card](https://goreportcard.com/badge/github.com/elementalvoid/tonnage)](https://goreportcard.com/report/github.com/elementalvoid/tonnage)
+[![Latest Release](https://img.shields.io/github/release/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/releases)
+[![License](https://img.shields.io/github/license/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/blob/master/LICENSE)
 
 >Tonnage is a small utility to summarize the resource capacity and allocation of a Kubernetes cluster. It will inspect pods on a per node basis and then provide both per-node and cluster-wide summary of the resources that are allocatable vs. what has _actually been_ allocated (requests and limits).
 >
