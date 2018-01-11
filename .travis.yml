@@ -19,5 +19,6 @@ deploy:
     - "_dist/tonnage-$TRAVIS_TAG-windows-amd64.tar.gz"
   on:
     repo: elementalvoid/tonnage
+    all_branches: true
     tag: true
-    go: "1.9.x"
+    go: 1.9.x
