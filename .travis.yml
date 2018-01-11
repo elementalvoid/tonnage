@@ -31,5 +31,5 @@ deploy:
     - "_dist/tonnage-$TRAVIS_TAG-windows-amd64.tar.gz.sha256"
   on:
     repo: elementalvoid/tonnage
-    tag: true
+    tags: true
     condition: $TRAVIS_GO_VERSION =~ ^1\.9\.[0-9]+$
