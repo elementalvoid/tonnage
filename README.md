@@ -17,6 +17,7 @@
         * [Pod Selection](#pod-selection)
   * [Development](#development)
     * [Dependencies](#dependencies)
+    * [Testing](#testing)
   * [TODO](#todo)
   * [Contributing](#contributing)
   * [License](#license)
@@ -27,16 +28,23 @@
 #### Requirements
 * A working [Go](https://golang.org/) install (tested with 1.8 and 1.9)
 * [dep](https://github.com/golang/dep)
+* A make tool
 
 ```
 $ go get github.com/elementalvoid/tonnage
 $ cd ${GOPATH}/src/github.com/elementalvoid/tonnage
-$ dep ensure
+$ make bootstrap
 $ go install github.com/elementalvoid/tonnage
 ```
 
 ### Binary install
-See [TODO](#todo)
+Every release provides binary releases. These can be manually downloaded and installed.
+
+* Download your [desired version](https://github.com/elementalvoid/tonnage/releases)
+* Unpack it (tar -xzvf tonnage-v0.0.1-linux-amd64.tgz)
+* Find the tonnage binary and move it to your desired location (mv linux-amd64/tonnage /usr/local/bin/tonnage)
+
+As long as it's in your shell's path you should be able to run it: `tonnage -h`
 
 ## Usage
 
@@ -82,18 +90,23 @@ All pods with the label `releaseVersion`.
 $ tonnage --pod-selector='releaseVersion'
 ```
 
-
 Only kube-dns and calico-node pods:
 ```
 $ tonnage --pod-selector='k8s-app in (kube-dns, calico-node)'
 ```
 
-
 ## Development
+Dependency management uses the [dep](https://github.com/golang/dep) project. Release builds are created with [Gox](https://github.com/mitchellh/gox). Testing is done with unit tests and the [Go Meta Linter](https://github.com/alecthomas/gometalinter).
 ### Dependencies
-Dependency management uses the [dep](https://github.com/golang/dep) project.
+
+A make target has been setup to install all the required tooling and install all dependencies.
 ```
-$ dep ensure
+$ make bootstrap
+```
+
+### Testing
+```
+make test
 ```
 
 ## TODO

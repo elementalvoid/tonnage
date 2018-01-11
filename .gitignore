@@ -2,3 +2,4 @@ vendor/
 data/
 .vscode/
 tonnage
+_dist/
