@@ -117,4 +117,4 @@ Please make sure to update tests as appropriate.
 5. Create a new Pull Request
 
 ## License
-[Apache 2.0](https://choosealicense.com/licenses/apache-2.0/)
+[Apache 2.0](./LICENSE)
