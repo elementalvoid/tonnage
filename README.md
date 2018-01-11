@@ -113,13 +113,13 @@ make test
 ```
 
 ## TODO
-* Automated (binary) builds.
-* Tests.
-* Limit by namespace.
-* Separate scanning from reporting.
-  * Save scans for later.
+- [x] Automated (binary) builds.
+- [ ] Tests.
+- [ ] Limit by namespace.
+- [ ] Separate scanning from reporting.
+  * Save scans for later?
   * Save whole scan? Doing so would mean not using built-in k8s selector support if we want to be able to load a scan _and_ further reduce it via selectors.
-* Allow simulating different allocatable resources to answer questions like "What would happen if I used a different AWS/GCE instance type?"
+- [ ] Allow simulating different allocatable resources to answer questions like "What would happen if I used a different AWS/GCE instance type?"
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
