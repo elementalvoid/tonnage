@@ -25,4 +25,4 @@ deploy:
   on:
     repo: elementalvoid/tonnage
     tag: true
-    go: "1.9"
+    go: "1.9.x"
