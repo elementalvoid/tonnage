@@ -9,7 +9,7 @@ jobs:
     - stage: Test
       install: &install
       - go get github.com/golang/dep/cmd/dep
-      - dep ensure
+      - dep ensure -v -vendor-only
       script: go test -v ./...
     - stage: Build
       install: skip
