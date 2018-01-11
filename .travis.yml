@@ -3,6 +3,13 @@ go:
   - 1.9.x
   - master
 
+matrix:
+  # It's ok if Go master fails.
+  allow_failures:
+    - go: master
+  # Don't wait for master tests to finish.
+  fast_finish: true
+
 install:
   - make bootstrap
 
