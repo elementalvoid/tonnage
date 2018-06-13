@@ -1,5 +1,5 @@
 vendor/
 data/
 .vscode/
-tonnage
+/tonnage
 _dist/

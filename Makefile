@@ -13,6 +13,14 @@ GIT_DIRTY  = $(shell test -n "`git status --porcelain`" && echo "dirty" || echo 
 
 VERSION ?= ${GIT_TAG}
 
+# # Only set version.Version if building a tag or VERSION is set
+# ifneq ($(VERSION),)
+# 	LDFLAGS += -X k8s.io/helm/pkg/version.Version=${VERSION}
+# endif
+
+# LDFLAGS += -X k8s.io/helm/pkg/version.GitCommit=${GIT_SHA}
+# LDFLAGS += -X k8s.io/helm/pkg/version.GitTreeState=${GIT_DIRTY}
+
 # hack for including VERSION in the release filename only when set
 FILE_VERSION :=
 ifneq ($(VERSION),)
@@ -22,6 +30,7 @@ endif
 # go options
 GO        ?= go
 PKG       := $(shell go list)
+CMD       := cmd/tonnage
 TAGS      :=
 TESTS     := .
 TESTFLAGS :=
@@ -35,7 +44,11 @@ all: build test
 .PHONY: build
 build:
 	@mkdir -p _dist
-	$(GO) build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o _dist/$(APP) $(PKG)
+	$(GO) build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o _dist/$(APP) $(PKG)/$(CMD)
+
+.PHONY: run
+run:
+	$(GO) run $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' $(CMD)/main.go $(OPTS)
 
 .PHONY: build-cross
 build-cross: LDFLAGS += -extldflags "-static"
@@ -97,4 +110,4 @@ endif
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
-	dep ensure -vendor-only
+	${GOPATH}/bin/dep ensure -vendor-only
