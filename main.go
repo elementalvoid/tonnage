@@ -32,7 +32,7 @@ type resourceUsage struct {
 }
 
 var logger = log.New()
-var summaryOnly bool
+var summaryOnly, nodeCountOnly bool
 var kubeconfig, kubecontext, nodeLabelSelector, podLabelSelector *string
 
 func init() {
@@ -49,6 +49,7 @@ func init() {
 	colorAlways := flag.BoolP("color-always", "C", false, "Force color output in all cases")
 	colorNever := flag.Bool("color-never", false, "Disable color completely")
 	json := flag.Bool("json", false, "Enable JSON formatted logging")
+	flag.BoolVar(&nodeCountOnly, "node-count", false, "Show only the count of matching nodes")
 	flag.BoolVarP(&summaryOnly, "summary", "s", false, "Show only the cummulative cluster summary")
 	flag.Parse()
 
@@ -87,6 +88,9 @@ func main() {
 		"numNodes":          len(nodeList.Items),
 		"nodeLabelselector": *nodeLabelSelector,
 	}).Info("Found nodes")
+	if nodeCountOnly {
+		return
+	}
 
 	clusterResources := resourceUsage{}
 
