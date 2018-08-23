@@ -37,6 +37,10 @@ build:
 	@mkdir -p _dist
 	$(GO) build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o _dist/$(APP) $(PKG)
 
+.PHONY: run
+run:
+	$(GO) run $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' main.go $(OPTS)
+
 .PHONY: build-cross
 build-cross: LDFLAGS += -extldflags "-static"
 build-cross:
