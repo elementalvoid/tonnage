@@ -13,7 +13,7 @@ before_install:
   - docker pull golangci/golangci-lint:latest
   - go get github.com/mitchellh/gox
   # hacky bit to reset go.mod since the gox install just changed it
-  - git checkout go.mod; go mod download
+  - git checkout go.mod
 
 script:
   - make -f Makefile-travis build test
