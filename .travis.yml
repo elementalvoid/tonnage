@@ -16,7 +16,7 @@ before_install:
   - git checkout go.mod; go mod download
 
 script:
-  - docker run --rm -v "$(go env GOPATH)/pkg/mod":/go/pkg/mod:ro -v "$(pwd)":/app -w /app golangci/golangci-lint:latest golangci-lint run
+  - make -f Makefile-travis build test
 
 before_deploy:
   - make -f Makefile-travis checksum
