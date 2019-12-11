@@ -1,13 +1,10 @@
 package main
 
 import (
-	"path/filepath"
-
 	flag "github.com/spf13/pflag"
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/mitchellh/go-homedir"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/fields"
@@ -37,11 +34,7 @@ var kubeconfig, kubecontext, nodeLabelSelector, podLabelSelector *string
 
 func init() {
 	// handle flags
-	if home, err := homedir.Dir(); home != "" && err == nil {
-		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "Absolute path to the kubeconfig file")
-	} else {
-		kubeconfig = flag.String("kubeconfig", "", "Absolute path to the kubeconfig file")
-	}
+	kubeconfig = flag.String("kubeconfig", "", "Absolute path to a kubeconfig file. Uses ~/.kube/config by default.")
 	kubecontext = flag.String("context", "", "The name of the kubeconfig context to use")
 	nodeLabelSelector = flag.String("node-selector", "", "Label selector for nodes to include")
 	podLabelSelector = flag.String("pod-selector", "", "Label selector for pods to include")
@@ -190,9 +183,16 @@ func (r *resourceUsage) accumulate(node resourceUsage) {
 
 func getClient() (*kubernetes.Clientset, error) {
 	// create a client config with proper kubeconfig and context
+	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
+	configOverrides := &clientcmd.ConfigOverrides{}
+	if *kubeconfig != "" {
+		loadingRules.ExplicitPath = *kubeconfig
+	}
+	if *kubecontext != "" {
+		configOverrides.CurrentContext = *kubecontext
+	}
 	config, err := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
-		&clientcmd.ClientConfigLoadingRules{ExplicitPath: *kubeconfig},
-		&clientcmd.ConfigOverrides{CurrentContext: *kubecontext}).ClientConfig()
+		loadingRules, configOverrides).ClientConfig()
 	if err != nil {
 		return nil, err
 	}
