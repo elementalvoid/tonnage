@@ -208,11 +208,11 @@ func getClient() (*kubernetes.Clientset, error) {
 		logger.WithFields(log.Fields{
 			"server": "unknown",
 			"err":    err.Error(),
-		}).Info("Connected to Kuberenetes API - unable to determine version")
+		}).Info("Connected to Kubernetes API - unable to determine version")
 	} else {
 		logger.WithFields(log.Fields{
 			"server": serverInfo.String(),
-		}).Info("Connected to Kuberenetes API")
+		}).Info("Connected to Kubernetes API")
 	}
 	return clientset, nil
 }
