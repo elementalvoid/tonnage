@@ -11,15 +11,14 @@ cache:
 
 before_install:
   - docker pull golangci/golangci-lint:latest
-  - go get github.com/mitchellh/gox
-  # hacky bit to reset go.mod since the gox install just changed it
-  - git checkout go.mod
+  - make bootstrap
 
 script:
-  - make -f Makefile-travis build test
+  - make build
+  - make test
 
 before_deploy:
-  - make -f Makefile-travis checksum
+  - make checksum
 
 deploy:
   provider: releases

@@ -30,7 +30,7 @@
 
 ### Source install
 #### Requirements
-* A working [Go](https://golang.org/) install (tested only with 1.9)
+* A working [Go](https://golang.org/) install (tested only with 1.13)
 * A make tool
 
 ```
@@ -44,7 +44,7 @@ $ go install github.com/elementalvoid/tonnage
 Every release provides binary releases. These can be manually downloaded and installed.
 
 * Download your [desired version](https://github.com/elementalvoid/tonnage/releases)
-* Unpack it (tar -xzvf tonnage-v0.0.1-linux-amd64.tgz)
+* Unpack it (tar -xzvf tonnage-v0.0.2-linux-amd64.tgz)
 * Find the tonnage binary and move it to your desired location (mv linux-amd64/tonnage /usr/local/bin/tonnage)
 
 As long as it's in your shell's path you should be able to run it: `tonnage -h`
@@ -99,10 +99,13 @@ $ tonnage --pod-selector='k8s-app in (kube-dns, calico-node)'
 ```
 
 ## Development
-Dependency management uses the [dep](https://github.com/golang/dep) project. Release builds are created with [Gox](https://github.com/mitchellh/gox). Testing is done with unit tests and the [Go Meta Linter](https://github.com/alecthomas/gometalinter).
+Dependency management is done with go modules. Release builds are created with [Gox](https://github.com/mitchellh/gox).
+Testing is done with unit tests and the [GolangCI-Lint](https://github.com/golangci/golangci-lint).
 ### Dependencies
+* A functioning Docker installation is required for the `make test` target as GolangCI-Lint is executed with Docker.
+* Git is required.
 
-A make target has been setup to install all the required tooling and install all dependencies.
+A make target has been setup to install Gox.
 ```
 $ make bootstrap
 ```

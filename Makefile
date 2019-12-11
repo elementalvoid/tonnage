@@ -18,7 +18,6 @@ ifneq ($(VERSION),)
 endif
 
 # go options
-GO        ?= go
 PKG       := $(shell go list)
 TAGS      :=
 TESTS     := .
@@ -32,7 +31,7 @@ all: build
 
 .PHONY: build
 build:
-	$(GO) build
+	go build
 
 .PHONY: build-cross
 build-cross: LDFLAGS += -extldflags "-static"
@@ -63,7 +62,7 @@ test: test-unit
 test-unit:
 	@echo
 	@echo "==> Running unit tests <=="
-	$(GO) test $(GOFLAGS) -run $(TESTS) $(PKG) $(TESTFLAGS)
+	go test $(GOFLAGS) -run $(TESTS) $(PKG) $(TESTFLAGS)
 
 .PHONY: test-linter
 test-linter:
@@ -74,14 +73,11 @@ test-linter:
 clean:
 	@rm -rf ./_dist
 
-HAS_GOX := $(shell command -v gox;)
 HAS_GIT := $(shell command -v git;)
 
 .PHONY: bootstrap
 bootstrap:
-ifndef HAS_GOX
-	$(error You must install gox)
-endif
+	go get github.com/mitchellh/gox
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
