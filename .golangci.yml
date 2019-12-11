@@ -1,0 +1,24 @@
+linters:
+  disable-all: true
+  enable:
+    # defaults
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+    - gosimple
+    - structcheck
+    - varcheck
+    - ineffassign
+    - deadcode
+    - typecheck
+    # additional
+    - goimports
+    - gosec
+    - maligned
+    - misspell
+    - whitespace
+
+output:
+  format: colored-line-number
+
