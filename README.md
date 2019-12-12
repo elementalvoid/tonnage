@@ -49,6 +49,11 @@ Every release provides binary releases. These can be manually downloaded and ins
 
 As long as it's in your shell's path you should be able to run it: `tonnage -h`
 
+## Kubernetes version support
+
+`tonnage` is currently built with the v1.17 Kubernetes client. For a full support matrix please
+reference the [client-go compatibility chart](https://github.com/kubernetes/client-go#compatibility-matrix). 
+
 ## Usage
 
 ```
