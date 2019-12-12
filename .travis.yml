@@ -38,4 +38,3 @@ deploy:
     repo: elementalvoid/tonnage
     # Only build binaries for tagged commits
     tags: true
-    condition: $LATEST = true
