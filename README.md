@@ -1,5 +1,5 @@
 # tonnage
-[![Build Status](https://img.shields.io/travis/elementalvoid/tonnage.svg)](https://travis-ci.org/elementalvoid/tonnage)
+[![Build Status](https://travis-ci.com/elementalvoid/tonnage.svg?branch=master)](https://travis-ci.com/elementalvoid/tonnage)
 [![Go Report Card](https://goreportcard.com/badge/github.com/elementalvoid/tonnage)](https://goreportcard.com/report/github.com/elementalvoid/tonnage)
 [![Latest Release](https://img.shields.io/github/release/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/releases)
 [![License](https://img.shields.io/github/license/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/blob/master/LICENSE)
