@@ -18,10 +18,8 @@ linters:
     # additional
     - goimports
     - gosec
-    - maligned
     - misspell
     - whitespace
 
 output:
   format: colored-line-number
-

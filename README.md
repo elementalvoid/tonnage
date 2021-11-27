@@ -12,7 +12,7 @@
 >[label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) to
 >inspect a subset of nodes, pods, or both.
 
-![](screenshot.png)
+![](screenshot-demo.gif)
 
 ## Table of contents
   * [Installation](#installation)
@@ -29,13 +29,14 @@
   * [TODO](#todo)
   * [Contributing](#contributing)
   * [License](#license)
+  * [Thanks](#thanks)
 
 ## Installation
 
 ### Source install
 #### Requirements
 
-* A working [Go](https://golang.org/) install (tested only with 1.13)
+* A working [Go](https://golang.org/) install (tested only with 1.17)
 * A make tool
 
 ```
@@ -57,7 +58,7 @@ As long as it's in your shell's path you should be able to run it: `tonnage -h`
 
 ## Kubernetes version support
 
-`tonnage` is currently built with the v1.17 Kubernetes client. For a full support matrix please
+`tonnage` is currently built with the v1.22 Kubernetes client. For a full support matrix please
 reference the [client-go compatibility chart](https://github.com/kubernetes/client-go#compatibility-matrix). 
 
 ## Usage
@@ -122,11 +123,9 @@ Dependency management is done with go modules. Release builds are created with
 
 ### Dependencies
 
-* A functioning Docker installation is required for the `make test` target as GolangCI-Lint is
-executed with Docker.
 * Git is required.
 
-A make target has been setup to install Gox.
+A make target has been setup to install Gox and golangci-lint.
 ```
 $ make bootstrap
 ```
@@ -161,3 +160,10 @@ Please make sure to update tests as appropriate.
 
 ## License
 [Apache 2.0](./LICENSE)
+
+## Thanks
+* [mpb](github.com/vbauerster/mpb) -- A _wonderful_ Golang progress bar.
+* [tablewriter](github.com/olekukonko/tablewriter) -- Made everything pretty!
+* [go-humanize](github.com/dustin/go-humanize) -- Awesome number formatting for lazy people.
+* [Terminalizer](https://terminalizer.com/) -- Made capturing the demo gif _super_ simple!
+* [GIFCompressor](https://gifcompressor.com/) -- Like a GIF Shrink-o-matic.
