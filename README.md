@@ -1,8 +1,15 @@
 # tonnage
-[![Build Status](https://travis-ci.com/elementalvoid/tonnage.svg?branch=master)](https://travis-ci.com/elementalvoid/tonnage)
+### GitHub Actions Status
+[![GitHub Actions Status](https://github.com/elementalvoid/tonnage/workflows/Go/badge.svg?branch=main)](https://github.com/elementalvoid/tonnage/actions/workflows/go.yaml)
+[![GitHub Actions Status](https://github.com/elementalvoid/tonnage/workflows/golangci-lint/badge.svg?branch=main)](https://github.com/elementalvoid/tonnage/actions/workflows/golangci-lint.yaml)
+[![GitHub Actions Status](https://github.com/elementalvoid/tonnage/workflows/CodeQL/badge.svg?branch=main)](https://github.com/elementalvoid/tonnage/actions/workflows/codeql.yaml)
+[![GitHub Actions Status](https://github.com/elementalvoid/tonnage/workflows/goreleaser/badge.svg?branch=main)](https://github.com/elementalvoid/tonnage/actions/workflows/goreleaser.yaml)
+### Other status
 [![Go Report Card](https://goreportcard.com/badge/github.com/elementalvoid/tonnage)](https://goreportcard.com/report/github.com/elementalvoid/tonnage)
 [![Latest Release](https://img.shields.io/github/release/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/releases)
-[![License](https://img.shields.io/github/license/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/elementalvoid/tonnage.svg)](https://github.com/elementalvoid/tonnage/blob/main/LICENSE)
+
+---
 
 >Tonnage is a small utility to summarize the resource capacity and allocation of a Kubernetes cluster.
 >It will inspect pods on a per node basis and then provide both per-node and cluster-wide summary of
@@ -24,7 +31,6 @@
         * [Node Selection](#node-selection)
         * [Pod Selection](#pod-selection)
   * [Development](#development)
-    * [Dependencies](#dependencies)
     * [Testing](#testing)
   * [TODO](#todo)
   * [Contributing](#contributing)
@@ -38,10 +44,14 @@
 
 * A working [Go](https://golang.org/) install (tested only with 1.17)
 
+A particular release:
 ```
-$ go get github.com/elementalvoid/tonnage
-$ cd ${GOPATH}/src/github.com/elementalvoid/tonnage
-$ go install github.com/elementalvoid/tonnage
+$ go install github.com/elementalvoid/tonnage@v0.1.0
+```
+
+Latest release:
+```
+$ go install github.com/elementalvoid/tonnage@latest
 ```
 
 ### Binary install
