@@ -37,12 +37,10 @@
 #### Requirements
 
 * A working [Go](https://golang.org/) install (tested only with 1.17)
-* A make tool
 
 ```
 $ go get github.com/elementalvoid/tonnage
 $ cd ${GOPATH}/src/github.com/elementalvoid/tonnage
-$ make bootstrap
 $ go install github.com/elementalvoid/tonnage
 ```
 
@@ -118,21 +116,19 @@ $ tonnage --pod-selector='k8s-app in (kube-dns, calico-node)'
 
 ## Development
 Dependency management is done with go modules. Release builds are created with
-[Gox](https://github.com/mitchellh/gox). Testing is done with unit tests and the
+[goreleaser](https://goreleaser.com/). Testing is done with unit tests and 
 [GolangCI-Lint](https://github.com/golangci/golangci-lint).
 
-### Dependencies
-
-* Git is required.
-
-A make target has been setup to install Gox and golangci-lint.
-```
-$ make bootstrap
-```
-
 ### Testing
+#### Go test
 ```
-make test
+go test -v ./
+```
+
+#### golangci-lint
+A `golangci-list` configuration file is available. Simply run:
+```
+golangci-list run
 ```
 
 ## TODO
@@ -143,8 +139,6 @@ make test
   * Save scans for later?
   * Save whole scan? Doing so would mean not using built-in k8s selector support if we want to be
   able to load a scan _and_ further reduce it via selectors.
-- [ ] Allow simulating different allocatable resources to answer questions like "What would happen
-if I used a different AWS/GCE instance type?"
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would
