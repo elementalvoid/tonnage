@@ -2,15 +2,11 @@ language: go
 go:
   - 1.17.x
 
-services:
-  - docker
-
 cache:
   directories:
     - $GOPATH/pkg/mod
 
 before_install:
-  - docker pull golangci/golangci-lint:latest
   - make bootstrap
 
 script:
