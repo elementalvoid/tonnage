@@ -71,7 +71,7 @@ test-unit:
 .PHONY: test-linter
 test-linter:
 	@echo "==> Running linter <=="
-	$(go env GOPATH)/bin/golangci-lint run
+	$(shell go env GOPATH)/bin/golangci-lint run
 
 .PHONY: clean
 clean:
@@ -81,7 +81,7 @@ HAS_GIT := $(shell command -v git;)
 
 .PHONY: bootstrap
 bootstrap:
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $(GOLANGCI_LINT_VERSION)
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin $(GOLANGCI_LINT_VERSION)
 	go install github.com/mitchellh/gox@$(GOX_VERSION)
 ifndef HAS_GIT
 	$(error You must install Git)
