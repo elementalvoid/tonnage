@@ -12,7 +12,7 @@
 >[label selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) to
 >inspect a subset of nodes, pods, or both.
 
-![](screenshot.png)
+![](screenshot-demo.gif)
 
 ## Table of contents
   * [Installation](#installation)
@@ -29,6 +29,7 @@
   * [TODO](#todo)
   * [Contributing](#contributing)
   * [License](#license)
+  * [Thanks](#thanks)
 
 ## Installation
 
@@ -159,3 +160,10 @@ Please make sure to update tests as appropriate.
 
 ## License
 [Apache 2.0](./LICENSE)
+
+## Thanks
+* [mpb](github.com/vbauerster/mpb) -- A _wonderful_ Golang progress bar.
+* [tablewriter](github.com/olekukonko/tablewriter) -- Made everything pretty!
+* [go-humanize](github.com/dustin/go-humanize) -- Awesome number formatting for lazy people.
+* [Terminalizer](https://terminalizer.com/) -- Made capturing the demo gif _super_ simple!
+* [GIFCompressor](https://gifcompressor.com/) -- Like a GIF Shrink-o-matic.
