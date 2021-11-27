@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/dustin/go-humanize"
 	"github.com/olekukonko/tablewriter"
@@ -66,7 +67,8 @@ func main() {
 		}).Fatal("Error creating kube client.")
 	}
 
-	nodeList, err := client.CoreV1().Nodes().List(metav1.ListOptions{
+	ctx := context.Background()
+	nodeList, err := client.CoreV1().Nodes().List(ctx, metav1.ListOptions{
 		LabelSelector: *nodeLabelSelector,
 	})
 	if err != nil {
@@ -184,7 +186,8 @@ func processNode(client *kubernetes.Clientset, node v1.Node, progress *mpb.Progr
 	nodeStats.Allocatable.Memory = *node.Status.Allocatable.Memory()
 
 	nodeFieldSelector := fields.OneTermEqualSelector("spec.nodeName", node.GetName()).String()
-	podsList, err := client.CoreV1().Pods("").List(metav1.ListOptions{
+	ctx := context.Background()
+	podsList, err := client.CoreV1().Pods("").List(ctx, metav1.ListOptions{
 		// Apply label selector from cli args
 		LabelSelector: *podLabelSelector,
 		// Limit to Pods on the current Node
