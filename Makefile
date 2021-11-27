@@ -17,6 +17,10 @@ ifneq ($(VERSION),)
 	FILE_VERSION = $(VERSION)-
 endif
 
+# Tool versions
+GOX_VERSION=v1.0.1
+GOLANGCI_LINT_VERSION=v1.43.0
+
 # go options
 PKG       := $(shell go list)
 TAGS      :=
@@ -67,7 +71,7 @@ test-unit:
 .PHONY: test-linter
 test-linter:
 	@echo "==> Running linter <=="
-	docker run --rm -v "$$(go env GOPATH)/pkg/mod":/go/pkg/mod:ro -v $$(pwd):/app -w /app golangci/golangci-lint:latest golangci-lint run
+	$(go env GOPATH)/bin/golangci-lint run
 
 .PHONY: clean
 clean:
@@ -77,7 +81,8 @@ HAS_GIT := $(shell command -v git;)
 
 .PHONY: bootstrap
 bootstrap:
-	go get github.com/mitchellh/gox
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $(GOLANGCI_LINT_VERSION)
+	go install github.com/mitchellh/gox@$(GOX_VERSION)
 ifndef HAS_GIT
 	$(error You must install Git)
 endif

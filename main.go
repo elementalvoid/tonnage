@@ -3,13 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"github.com/dustin/go-humanize"
 	"github.com/olekukonko/tablewriter"
 
-	"k8s.io/apimachinery/pkg/api/resource"
-	"k8s.io/apimachinery/pkg/fields"
 	"os"
 	"sync"
+
+	"k8s.io/apimachinery/pkg/api/resource"
+	"k8s.io/apimachinery/pkg/fields"
 
 	flag "github.com/spf13/pflag"
 

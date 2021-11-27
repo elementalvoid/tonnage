@@ -16,7 +16,7 @@ type containerResources struct {
 }
 
 type podResources struct {
-	PodName 	  string
+	PodName       string
 	Requests      resources
 	Limits        resources
 	NumContainers int64
