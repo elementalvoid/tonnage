@@ -85,7 +85,7 @@ func main() {
 		"numNodes":          len(nodeList.Items),
 		"nodeLabelSelector": *nodeLabelSelector,
 		"podLabelSelector":  *podLabelSelector,
-		"nodeFieldSelector":  *nodeFieldSelector,
+		"nodeFieldSelector": *nodeFieldSelector,
 		"podFieldSelector":  *podFieldSelector,
 	}).Info("Found nodes")
 
