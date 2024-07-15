@@ -42,7 +42,7 @@
 ### Source install
 #### Requirements
 
-* A working [Go](https://golang.org/) install (tested only with 1.17)
+* A working [Go](https://golang.org/) install (tested only with 1.22)
 
 A particular release:
 ```
@@ -144,7 +144,7 @@ golangci-list run
 ## TODO
 - [x] Automated (binary) builds.
 - [ ] Tests.
-- [ ] Limit by namespace.
+- [x] Limit by namespace.
 - [ ] Separate scanning from reporting.
   * Save scans for later?
   * Save whole scan? Doing so would mean not using built-in k8s selector support if we want to be

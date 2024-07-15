@@ -27,7 +27,7 @@ import (
 
 var logger = log.New()
 var summaryOnly, includePods bool
-var kubeconfig, kubecontext, nodeLabelSelector, podLabelSelector *string
+var kubeconfig, kubecontext, nodeLabelSelector, podLabelSelector, nodeFieldSelector, podFieldSelector *string
 
 var clusterStats = clusterResourceUsage{}
 
@@ -39,7 +39,9 @@ func init() {
 	kubeconfig = flag.String("kubeconfig", "", "Absolute path to a kubeconfig file. Uses ~/.kube/config by default.")
 	kubecontext = flag.String("context", "", "The name of the kubeconfig context to use")
 	nodeLabelSelector = flag.StringP("node-selector", "N", "", "Label selector for nodes to include")
+	nodeFieldSelector = flag.StringP("node-field-selector", "", "", "Node FieldSelector - only supports 'spec.unschedulable'. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/")
 	podLabelSelector = flag.StringP("pod-selector", "P", "", "Label selector for pods to include")
+	podFieldSelector = flag.StringP("pod-field-selector", "", "", "Pod FieldSelector - useful for Namespace selection. See: https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/")
 	flag.BoolVarP(&includePods, "include-pods", "p", false, "Include Pod resource data in output")
 	flag.BoolVarP(&summaryOnly, "summary", "s", false, "Show only the cumulative cluster summary")
 	help := flag.BoolP("help", "h", false, "Show help")
@@ -72,6 +74,7 @@ func main() {
 	ctx := context.Background()
 	nodeList, err := client.CoreV1().Nodes().List(ctx, metav1.ListOptions{
 		LabelSelector: *nodeLabelSelector,
+		FieldSelector: *nodeFieldSelector,
 	})
 	if err != nil {
 		logger.WithFields(log.Fields{
@@ -82,6 +85,8 @@ func main() {
 		"numNodes":          len(nodeList.Items),
 		"nodeLabelSelector": *nodeLabelSelector,
 		"podLabelSelector":  *podLabelSelector,
+		"nodeFieldSelector":  *nodeFieldSelector,
+		"podFieldSelector":  *podFieldSelector,
 	}).Info("Found nodes")
 
 	wg := sync.WaitGroup{}
@@ -187,13 +192,13 @@ func processNode(client *kubernetes.Clientset, node v1.Node, progress *mpb.Progr
 	nodeStats.Allocatable.CPU = *node.Status.Allocatable.Cpu()
 	nodeStats.Allocatable.Memory = *node.Status.Allocatable.Memory()
 
-	nodeFieldSelector := fields.OneTermEqualSelector("spec.nodeName", node.GetName()).String()
+	fieldSelector := fmt.Sprintf("%s,%s", fields.OneTermEqualSelector("spec.nodeName", node.GetName()).String(), *podFieldSelector)
 	ctx := context.Background()
 	podsList, err := client.CoreV1().Pods("").List(ctx, metav1.ListOptions{
 		// Apply label selector from cli args
 		LabelSelector: *podLabelSelector,
 		// Limit to Pods on the current Node
-		FieldSelector: nodeFieldSelector,
+		FieldSelector: fieldSelector,
 	})
 	if err != nil {
 		logger.WithFields(log.Fields{
