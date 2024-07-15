@@ -10,10 +10,7 @@ linters:
     - staticcheck
     - unused
     - gosimple
-    - structcheck
-    - varcheck
     - ineffassign
-    - deadcode
     - typecheck
     # additional
     - goimports
@@ -22,4 +19,5 @@ linters:
     - whitespace
 
 output:
-  format: colored-line-number
+  formats:
+    - format: colored-line-number
